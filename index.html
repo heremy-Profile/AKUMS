@@ -2918,7 +2918,7 @@ function advanceLoader(){
   const idx = Math.floor(loadPct/25);
   loaderLabel.textContent = loadMsgs[Math.min(idx,3)];
   if(loadPct<100){ setTimeout(advanceLoader, 120+Math.random()*200); }
-  else { setTimeout(()=>loader.classList.add('hidden'), 1500); }
+  else { setTimeout(()=>loader.classList.add('hidden'), 2000); }
 }
 window.addEventListener('DOMContentLoaded', advanceLoader);
 
