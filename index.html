@@ -86,7 +86,7 @@ a,button,[role=button],[tabindex]{cursor:url('assets/img/logo-cursor-48.png') 24
   display:flex;flex-direction:column;align-items:center;gap:32px;
 }
 #loader img.loader-logo{
-  width:420px;max-width:80vw;
+  width:520px;max-width:80vw;
   filter:drop-shadow(0 0 40px rgba(155,109,220,.5)) drop-shadow(0 0 80px rgba(91,45,142,.3));
   animation:logoReveal 1.2s cubic-bezier(.34,1.56,.64,1) both, logoPulseGlow 3s ease-in-out infinite 1.2s;
 }
@@ -1113,6 +1113,93 @@ a,button,[role=button],[tabindex]{cursor:url('assets/img/logo-cursor-48.png') 24
 .programs-panel{position:relative;overflow:hidden}
 .programs-panel:hover .programs-stamp{opacity:0.1}
 
+
+/* ═══════════════════════════════════════
+   PREMIUM POPULAR PROGRAMS PANEL — HERO REFERENCE STYLE
+═══════════════════════════════════════ */
+.premium-programs-panel{
+  position:relative;
+  overflow:hidden;
+  padding:34px 28px 30px;
+  border-left:none;
+  background:
+    radial-gradient(circle at 22% 0%, rgba(180,127,255,.32), transparent 34%),
+    radial-gradient(circle at 88% 88%, rgba(123,54,199,.34), transparent 38%),
+    linear-gradient(154deg,#1a043b 0%,#2b075d 43%,#4b1390 100%);
+  color:#fff;
+  min-height:100%;
+  box-shadow:inset 1px 0 0 rgba(255,255,255,.08);
+}
+.premium-programs-panel::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(0deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:72px 72px;
+  opacity:.22;
+}
+.premium-programs-panel::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.08),transparent 32%,rgba(0,0,0,.14));
+}
+.programs-bg-orb{position:absolute;border-radius:999px;filter:blur(26px);opacity:.55;pointer-events:none}
+.programs-bg-orb-one{width:180px;height:180px;background:#8e55ff;top:-70px;right:-72px}
+.programs-bg-orb-two{width:230px;height:230px;background:#5c18b8;bottom:-120px;left:-80px}
+.premium-programs-header{position:relative;z-index:2;margin-bottom:24px;align-items:flex-start}
+.programs-kicker{font-size:11px;font-weight:900;letter-spacing:.18em;color:rgba(255,255,255,.55);margin-bottom:10px}
+.premium-programs-title{font-family:'Cairo',sans-serif;font-size:31px;line-height:1.08;font-weight:1000;color:#fff;letter-spacing:-.04em}
+.premium-programs-view-all{
+  color:#fff;opacity:1;font-size:12px;line-height:1.08;font-weight:900;
+  min-width:122px;justify-content:space-between;gap:14px;
+  padding:12px 16px;border:1px solid rgba(255,255,255,.22);border-radius:999px;
+  background:rgba(255,255,255,.09);box-shadow:inset 0 1px 0 rgba(255,255,255,.14);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.premium-programs-view-all:hover{transform:translateY(-2px);background:rgba(255,255,255,.15);box-shadow:0 16px 36px rgba(0,0,0,.22)}
+.premium-programs-view-all strong{font-size:17px;line-height:1}
+.program-featured-card{
+  position:relative;z-index:2;display:block;min-height:272px;margin-bottom:18px;
+  border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.08);box-shadow:0 24px 56px rgba(8,0,25,.34), inset 0 1px 0 rgba(255,255,255,.12);
+}
+.program-featured-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.03);transition:transform .7s ease}
+.program-featured-card:hover img{transform:scale(1.07)}
+.program-featured-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,0,42,.26),rgba(15,0,42,.68) 48%,rgba(15,0,42,.88));}
+.program-featured-content{position:absolute;inset:auto 18px 18px 18px;color:#fff}
+.program-ribbon{display:inline-flex;margin-bottom:12px;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.24);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:11px;font-weight:950;letter-spacing:.07em;color:#fff}
+.program-featured-card h3{font-family:'Cairo',sans-serif;font-size:24px;line-height:1.1;font-weight:1000;margin:0 0 9px;color:#fff;letter-spacing:-.035em;text-shadow:0 4px 18px rgba(0,0,0,.35)}
+.program-featured-card p{font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.86);max-width:96%;margin:0 0 14px}
+.program-metrics{display:flex;flex-wrap:wrap;gap:8px}
+.program-metrics span{display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.88);font-size:11px;font-weight:700;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.program-metrics b{font-size:15px;color:#fff}
+.premium-program-row{
+  position:relative;z-index:2;display:flex;align-items:center;gap:13px;margin-bottom:12px;
+  padding:12px;border:1px solid rgba(255,255,255,.13);border-bottom:1px solid rgba(255,255,255,.13)!important;
+  border-radius:18px;background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.07));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 12px 26px rgba(0,0,0,.16);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+}
+.premium-program-row::before{background:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,.05));border-radius:18px}
+.premium-program-row:hover{transform:translateX(4px);border-color:rgba(255,255,255,.24)!important;background:rgba(255,255,255,.16)}
+.premium-program-row .program-thumb{width:66px;height:52px;border-radius:13px;border:1px solid rgba(255,255,255,.2);box-shadow:0 8px 18px rgba(0,0,0,.22)}
+.program-name-wrap{flex:1;position:relative;z-index:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.program-name-wrap strong{font-size:13.5px;line-height:1.15;color:#fff;font-weight:950;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.program-name-wrap small{font-size:11.3px;line-height:1.2;color:rgba(255,255,255,.62);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.premium-program-row .program-arrow{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.12);font-size:17px}
+.premium-program-row:hover .program-arrow{background:rgba(255,255,255,.24);color:#fff;transform:translateX(2px)}
+.program-tags{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:9px;margin-top:10px}
+.program-tags span{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);font-size:10px;font-weight:900;letter-spacing:.04em}
+
+@media(max-width:1200px){
+  .premium-programs-panel{border-top:none;padding:32px 22px}
+  .program-featured-card{min-height:250px}
+}
+@media(max-width:600px){
+  .premium-programs-header{flex-direction:column;gap:14px}
+  .premium-programs-view-all{width:fit-content}
+  .premium-programs-title{font-size:28px}
+}
+
 /* ═══════════════════════════════════════
    FULL PROGRAMS SECTION — ANNEX 2
 ═══════════════════════════════════════ */
@@ -1854,51 +1941,6 @@ a,button,[role=button],[tabindex]{cursor:url('assets/img/logo-cursor-48.png') 24
       </div>
     </div>
 
-    <!-- RIGHT stats -->
-    <div class="hero-right reveal-right">
-      <div class="hero-stat-top">
-        <div class="hero-stat-top-logo">
-          <img src="assets/img/lg.png" alt="Logo">
-        </div>
-        <span class="hero-stat-top-text" data-i18n="accredited_text">Accredited & Recognized<br>Ministry of Education UAE</span>
-        <span class="hero-stat-top-check">✓</span>
-      </div>
-      <div class="hero-stat-item">
-        <span class="hero-stat-icon">🎓</span>
-        <div class="hero-stat-info">
-          <div class="hero-stat-num">20+</div>
-          <div class="hero-stat-label" data-i18n="stat_programs">Academic Programs</div>
-        </div>
-      </div>
-      <div class="hero-stat-item">
-        <span class="hero-stat-icon">🏛️</span>
-        <div class="hero-stat-info">
-          <div class="hero-stat-num">8</div>
-          <div class="hero-stat-label" data-i18n="stat_colleges">Colleges</div>
-        </div>
-      </div>
-      <div class="hero-stat-item">
-        <span class="hero-stat-icon">👥</span>
-        <div class="hero-stat-info">
-          <div class="hero-stat-num">500+</div>
-          <div class="hero-stat-label" data-i18n="stat_faculty">Faculty Members</div>
-        </div>
-      </div>
-      <div class="hero-stat-item">
-        <span class="hero-stat-icon">📚</span>
-        <div class="hero-stat-info">
-          <div class="hero-stat-num">10K+</div>
-          <div class="hero-stat-label" data-i18n="stat_students">Students</div>
-        </div>
-      </div>
-      <div class="hero-stat-item">
-        <span class="hero-stat-icon">🌍</span>
-        <div class="hero-stat-info">
-          <div class="hero-stat-num">50+</div>
-          <div class="hero-stat-label" data-i18n="stat_partners">Global Partners</div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <div class="hero-dots" id="heroDots"></div>
@@ -1985,33 +2027,65 @@ a,button,[role=button],[tabindex]{cursor:url('assets/img/logo-cursor-48.png') 24
     </div>
   </div>
 
-  <!-- RIGHT: programs -->
-  <!-- RIGHT: programs -->
-  <div id="academics" class="programs-panel">
-    <img src="assets/img/stamp-new.png" class="programs-stamp" alt="">
-    <div class="programs-header">
-      <div class="programs-title" data-i18n="programs_title">Our Programs</div>
-      <a href="#full-programs" class="programs-view-all"><span data-i18n="view_all">View All Programs</span> →</a>
+  <!-- RIGHT: popular programs — premium sidebar matching hero reference -->
+  <div id="academics" class="programs-panel premium-programs-panel">
+    <div class="programs-bg-orb programs-bg-orb-one"></div>
+    <div class="programs-bg-orb programs-bg-orb-two"></div>
+
+    <div class="programs-header premium-programs-header">
+      <div>
+        <div class="programs-kicker">FEATURED ACADEMICS</div>
+        <div class="programs-title premium-programs-title">Popular<br>Programs</div>
+      </div>
+      <a href="#full-programs" class="programs-view-all premium-programs-view-all">
+        <span>View All<br>Programs</span>
+        <strong>→</strong>
+      </a>
     </div>
-    <div class="program-row">
+
+    <a href="#full-programs" class="program-featured-card" aria-label="BSc in Dental Medicine & Surgery">
+      <img src="assets/img/img04.png" alt="Dental Medicine and Surgery">
+      <div class="program-featured-shade"></div>
+      <div class="program-featured-content">
+        <span class="program-ribbon">FLAGSHIP • 5 YEARS</span>
+        <h3>BSc in Dental Medicine &amp;<br>Surgery</h3>
+        <p>Clinical dental education, simulation clinics, oral surgery, prosthodontics, orthodontics and patient-centered training.</p>
+        <div class="program-metrics">
+          <span><b>210</b> Credit Hours</span>
+          <span><b>2,000+</b> Clinic Hours</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="#full-programs" class="program-row premium-program-row">
       <img class="program-thumb" src="assets/img/img06.png" alt="Nursing">
-      <span class="program-name" data-i18n="prog_3">BSc in Nursing</span>
+      <span class="program-name-wrap">
+        <strong>Nursing &amp; Midwifery</strong>
+        <small>Clinical rotations · patient care · ICU ...</small>
+      </span>
       <span class="program-arrow">›</span>
-    </div>
-    <div class="program-row">
+    </a>
+    <a href="#full-programs" class="program-row premium-program-row">
       <img class="program-thumb" src="assets/img/img07.png" alt="Medical Lab">
-      <span class="program-name" data-i18n="prog_4">BSc in Medical Laboratory Sciences</span>
+      <span class="program-name-wrap">
+        <strong>Medical Laboratory Sciences</strong>
+        <small>Diagnostics · hematology · molecular ...</small>
+      </span>
       <span class="program-arrow">›</span>
-    </div>
-    <div class="program-row">
-      <img class="program-thumb" src="assets/img/img04.png" alt="Dental">
-      <span class="program-name">BSc in Dental Medicine & Surgery</span>
-      <span class="program-arrow">›</span>
-    </div>
-    <div class="program-row">
+    </a>
+    <a href="#full-programs" class="program-row premium-program-row">
       <img class="program-thumb" src="assets/img/img05.png" alt="Physiotherapy">
-      <span class="program-name">BSc in Physiotherapy</span>
+      <span class="program-name-wrap">
+        <strong>BSc in Physiotherapy</strong>
+        <small>Rehabilitation · sports PT · neuro recovery ...</small>
+      </span>
       <span class="program-arrow">›</span>
+    </a>
+
+    <div class="program-tags">
+      <span>QFEMIRATES LEVEL 7</span>
+      <span>MOE / CAA READY</span>
+      <span>HEALTH SCIENCES FOCUS</span>
     </div>
   </div>
 </section>
@@ -2339,8 +2413,12 @@ a,button,[role=button],[tabindex]{cursor:url('assets/img/logo-cursor-48.png') 24
   </div><!-- /ar-content -->
 </section>
 
-
-
+<!-- ════════════════════════
+     FEATURES BAR
+════════════════════════ -->
+<div class="features-bar reveal">
+  <div class="feature-item">
+    <div class="feature-icon-wrap">🤖</div>
     <div class="feature-text">
       <div class="feature-name" data-i18n="feat_1">AI-Powered Learning</div>
       <div class="feature-sub" data-i18n="feat_1_sub">Smart Education</div>
@@ -2415,7 +2493,7 @@ a,button,[role=button],[tabindex]{cursor:url('assets/img/logo-cursor-48.png') 24
 <!-- ════════════════════════
      WHY AIN AL KHALEEJ
 ════════════════════════ -->
-<section class="why-section reveal">
+<section class="why-section reveal" id="research">
   <div class="why-header">
     <div class="why-title-col">
       <img src="assets/img/logo-stacked.png" alt="Ain Al Khaleej University logo stacked">
@@ -2532,6 +2610,14 @@ a,button,[role=button],[tabindex]{cursor:url('assets/img/logo-cursor-48.png') 24
 </section>
 
 <!-- ════════════════════════
+     CHAIRMAN'S WORD
+════════════════════════ -->
+<section class="chairman-section reveal" id="chairman">
+  <img src="assets/img/charman.png" alt="Chairman's Word — Mohammed Shemel Al Memari" class="ch-full-img">
+  <div style="position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to bottom,transparent,rgba(26,0,80,0.95));pointer-events:none"></div>
+</section>
+
+<!-- ════════════════════════
      CTA BANNER
 ════════════════════════ -->
 <section id="admissions" class="cta-banner reveal">
@@ -2606,14 +2692,6 @@ a,button,[role=button],[tabindex]{cursor:url('assets/img/logo-cursor-48.png') 24
       </div>
     </article>
   </div>
-</section>
-
-<!-- ════════════════════════
-     CHAIRMAN'S WORD
-════════════════════════ -->
-<section class="chairman-section reveal" id="chairman">
-  <img src="assets/img/charman.png" alt="Chairman's Word — Mohammed Shemel Al Memari" class="ch-full-img">
-  <div style="position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to bottom,transparent,#fff);pointer-events:none"></div>
 </section>
 
 
@@ -3084,6 +3162,29 @@ document.querySelectorAll('.stat-col').forEach(col=>{
 });
 
 /* ═══════════════════════════════════════
+   PROGRAMS FILTER TABS
+═══════════════════════════════════════ */
+document.querySelectorAll('.upc-filter').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.upc-filter').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.dataset.fcat;
+    document.querySelectorAll('.upc-card').forEach((card,i)=>{
+      const show = cat==='all' || card.dataset.pcat===cat;
+      card.classList.toggle('upc-hidden',!show);
+      if(show){
+        card.style.animation='none';
+        card.style.animationDelay=(i*0.06)+'s';
+        requestAnimationFrame(()=>{
+          card.style.animation='cardPop .45s cubic-bezier(.34,1.56,.64,1) forwards';
+        });
+      }
+    });
+  });
+});
+(()=>{ const s=document.createElement('style'); s.textContent='@keyframes cardPop{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:none}}'; document.head.appendChild(s); })();
+
+/* ═══════════════════════════════════════
    CAMPUS SLIDER
 ═══════════════════════════════════════ */
 const slider = document.getElementById('campusSlider');
@@ -3242,39 +3343,11 @@ function showToast(msg,duration=3000){
 ═══════════════════════════════════════ */
 document.querySelectorAll('.program-row').forEach(row=>{
   row.addEventListener('click',()=>{
-    const name = row.querySelector('.program-name').textContent;
+    const nameEl = row.querySelector('.program-name') || row.querySelector('.program-name-wrap strong');
+    const name = nameEl ? nameEl.textContent : 'Program';
     showToast('📚 '+name+' — Coming Soon!');
   });
 });
-
-/* ═════════ AR CAMPUS LAUNCH ═════════ */
-(function initAR(){
-  const openBtn = document.getElementById('arOpenModal');
-  if(!openBtn) return;
-  openBtn.addEventListener('click', ()=>{
-    // Open the dedicated AR page — real camera WebXR experience
-    window.location.href = 'campus-ar.html';
-  });
-})();
-
-/* ═════════ UPC FILTER TABS ═════════ */
-document.querySelectorAll('.upc-filter').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.upc-filter').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const cat=btn.dataset.fcat;
-    document.querySelectorAll('.upc-card').forEach((card,i)=>{
-      const show=cat==='all'||card.dataset.pcat===cat;
-      card.classList.toggle('upc-hidden',!show);
-      if(show){
-        card.style.animation='none';
-        card.style.animationDelay=(i*0.05)+'s';
-        requestAnimationFrame(()=>{ card.style.animation='cardPop .45s cubic-bezier(.34,1.56,.64,1) forwards'; });
-      }
-    });
-  });
-});
-(()=>{ const s=document.createElement('style'); s.textContent='@keyframes cardPop{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}'; document.head.appendChild(s); })();
 
 /* ═════════ AR MODAL ═════════ */
 (function initAR(){
@@ -3405,33 +3478,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 ═══════════════════════════════════════ */
 setTimeout(()=>showToast('💡 Press Ctrl+K to search anywhere',4000), 3500);
 
-/* ═══════════════════════════════════════
-   ULTRA PROGRAMS FILTER
-═══════════════════════════════════════ */
-document.querySelectorAll('.upc-filter').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.upc-filter').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const cat = btn.dataset.fcat;
-    document.querySelectorAll('.upc-card').forEach((card,i)=>{
-      const show = cat==='all' || card.dataset.pcat===cat;
-      card.classList.toggle('upc-hidden',!show);
-      if(show){
-        card.style.animationDelay = (i*0.06)+'s';
-        card.style.animation='none';
-        requestAnimationFrame(()=>{
-          card.style.animation='cardPop .5s cubic-bezier(.34,1.56,.64,1) forwards';
-        });
-      }
-    });
-  });
-});
-// card pop keyframe
-(()=>{
-  const s=document.createElement('style');
-  s.textContent='@keyframes cardPop{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:none}}';
-  document.head.appendChild(s);
-})();
+/* upc-filter handled above */
 
 /* ═══════════════════════════════════════
    QR CODE GENERATOR
@@ -3646,5 +3693,255 @@ INSTRUCTIONS:
 console.log('%c🏥 AIN AL KHALEEJ UNIVERSITY','color:#5b2d8e;font-size:18px;font-weight:900');
 console.log('%cUltimate Edition — All systems live.','color:#9b6ddc;font-size:13px');
 </script>
+
+<!-- AR CAMPUS MODAL -->
+<div class="ar-modal-overlay" id="arModalOverlay">
+  <div class="ar-modal">
+    <div class="ar-modal-header">
+      <div class="ar-modal-title">🔮 Campus AR Experience</div>
+      <button class="ar-modal-close" id="arModalClose">✕</button>
+    </div>
+    <div class="ar-modal-body">
+      <!-- Journey flow -->
+      <div class="ar-flow-col">
+        <div class="ar-flow-title">How It Works</div>
+        <div class="ar-flow-steps">
+          <div class="ar-flow-step">
+            <div class="ar-flow-step-left">
+              <div class="ar-flow-num">1</div>
+              <div class="ar-flow-connector"></div>
+            </div>
+            <div class="ar-flow-step-content">
+              <div class="ar-flow-step-ar">امسح رمز الاستجابة السريعة</div>
+              <div class="ar-flow-step-title">Scan the QR Code</div>
+              <div class="ar-flow-step-desc">Open your phone camera and point it at the QR code to the right. Works on iOS and Android.</div>
+            </div>
+          </div>
+          <div class="ar-flow-step">
+            <div class="ar-flow-step-left">
+              <div class="ar-flow-num">2</div>
+              <div class="ar-flow-connector"></div>
+            </div>
+            <div class="ar-flow-step-content">
+              <div class="ar-flow-step-ar">ضع النموذج على أي سطح</div>
+              <div class="ar-flow-step-title">Place the Campus Model</div>
+              <div class="ar-flow-step-desc">Point your camera at a flat surface — a table, floor, or desk. Tap to place the 3D campus model.</div>
+            </div>
+          </div>
+          <div class="ar-flow-step">
+            <div class="ar-flow-step-left">
+              <div class="ar-flow-num">3</div>
+              <div class="ar-flow-connector"></div>
+            </div>
+            <div class="ar-flow-step-content">
+              <div class="ar-flow-step-ar">جولة داخل المبنى</div>
+              <div class="ar-flow-step-title">Explore in Augmented Reality</div>
+              <div class="ar-flow-step-desc">Walk around, zoom in, and explore every building and facility of AAKU campus in your real environment.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- QR panel -->
+      <div class="ar-qr-col">
+        <div class="ar-qr-card">
+          <div class="ar-qr-header-text">Scan to Launch AR</div>
+          <div class="ar-qr-sub-text">Point your phone camera at this code</div>
+          <div class="ar-qr-frame">
+            <div class="qr-corner tl"></div>
+            <div class="qr-corner tr"></div>
+            <div class="qr-corner bl"></div>
+            <div class="qr-corner br"></div>
+            <div class="ar-qr-inner">
+              <canvas id="qrCanvas" width="200" height="200"></canvas>
+            </div>
+          </div>
+          <div class="ar-qr-scan-label">📱 Scan with your phone camera</div>
+        </div>
+        <div class="ar-device-row">
+          <div class="ar-device-chip">🍎 iOS — USDZ</div>
+          <div class="ar-device-chip">🤖 Android — WebXR</div>
+        </div>
+        <button class="ar-open-btn" id="arLaunchDirect">
+          🔮 Open AR Experience Directly
+        </button>
+      </div>
+    </div>
+
+    <model-viewer
+      id="campusModelViewer"
+      src="assets/university-campus.glb"
+      ios-src="assets/university-campus.usdz"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      camera-controls
+      auto-rotate
+      shadow-intensity="1"
+      exposure="1"
+      style="width:1px;height:1px;opacity:0;position:absolute;pointer-events:none;left:-9999px;top:-9999px;"
+      alt="Ain Al Khaleej University Campus 3D AR Model">
+    </model-viewer>
+    <div class="ar-modal-note">
+      <span class="ar-modal-note-icon">ℹ️</span>
+      <span>Best experienced on iOS 12+ or Android 8+ with ARCore support. Requires a device with camera access and a flat surface to place the model.</span>
+    </div>
+  </div>
+</div>
+
+
+<script>
+/* ═══════════════════════════════════════
+   FINAL AR CAMPUS FIX — MODAL + QR + DIRECT AR
+═══════════════════════════════════════ */
+(function finalARCampusFix(){
+  function isIOS(){
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  }
+
+  function basePath(){
+    return window.location.href.split('#')[0].split('?')[0].replace(/[^\/]*$/, '');
+  }
+
+  const AR_PAGE_URL = basePath() + 'index.html?ar=1';
+  const GLB_URL = basePath() + 'assets/university-campus.glb';
+  const USDZ_URL = basePath() + 'assets/university-campus.usdz';
+
+  function toast(msg){
+    if(typeof showToast === 'function') showToast(msg);
+    else console.log(msg);
+  }
+
+  function ensureQR(){
+    const frame = document.querySelector('.ar-qr-inner');
+    const canvas = document.getElementById('qrCanvas');
+    if(!frame || frame.dataset.finalQr === '1') return;
+    frame.dataset.finalQr = '1';
+    if(canvas) canvas.style.display = 'none';
+
+    let old = document.getElementById('qrCodeDiv');
+    if(old) old.remove();
+
+    const div = document.createElement('div');
+    div.id = 'qrCodeDiv';
+    div.style.cssText = 'display:flex;align-items:center;justify-content:center;';
+    frame.appendChild(div);
+
+    if(typeof QRCode !== 'undefined'){
+      new QRCode(div, {
+        text: AR_PAGE_URL,
+        width: 180,
+        height: 180,
+        colorDark: '#5b2d8e',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    } else if(canvas){
+      canvas.style.display = 'block';
+      const ctx = canvas.getContext('2d');
+      const size = 200;
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0,0,size,size);
+      ctx.fillStyle = '#5b2d8e';
+      ctx.font = 'bold 13px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText('AR QR library not loaded', size/2, 95);
+      ctx.fillText('Open: index.html?ar=1', size/2, 115);
+    }
+  }
+
+  async function launchAR(){
+    const mv = document.getElementById('campusModelViewer');
+    if(isIOS()){
+      window.location.href = USDZ_URL;
+      return;
+    }
+
+    if(mv){
+      mv.setAttribute('src', GLB_URL);
+      mv.setAttribute('ios-src', USDZ_URL);
+      mv.setAttribute('ar', '');
+      mv.setAttribute('ar-modes', 'webxr scene-viewer quick-look');
+      try{
+        if(typeof mv.activateAR === 'function'){
+          await mv.activateAR();
+          return;
+        }
+      }catch(err){
+        console.warn('model-viewer AR launch failed:', err);
+      }
+    }
+
+    window.location.href = 'intent://arvr.google.com/scene-viewer/1.0?file=' + encodeURIComponent(GLB_URL) +
+      '&mode=ar_preferred#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=' +
+      encodeURIComponent(GLB_URL) + ';end;';
+  }
+
+  function openModal(){
+    const overlay = document.getElementById('arModalOverlay');
+    if(!overlay) return;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    ensureQR();
+  }
+
+  function closeModal(){
+    const overlay = document.getElementById('arModalOverlay');
+    if(!overlay) return;
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function bindAR(){
+    const openBtn = document.getElementById('arOpenModal');
+    const closeBtn = document.getElementById('arModalClose');
+    const overlay = document.getElementById('arModalOverlay');
+    const launchBtn = document.getElementById('arLaunchDirect');
+
+    if(openBtn && !openBtn.dataset.arFixed){
+      openBtn.dataset.arFixed = '1';
+      openBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        openModal();
+      });
+    }
+
+    if(closeBtn && !closeBtn.dataset.arFixed){
+      closeBtn.dataset.arFixed = '1';
+      closeBtn.addEventListener('click', closeModal);
+    }
+
+    if(overlay && !overlay.dataset.arFixed){
+      overlay.dataset.arFixed = '1';
+      overlay.addEventListener('click', function(e){
+        if(e.target === overlay) closeModal();
+      });
+    }
+
+    if(launchBtn && !launchBtn.dataset.arFixed){
+      launchBtn.dataset.arFixed = '1';
+      launchBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        launchAR();
+      });
+    }
+
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') closeModal();
+    }, {once:false});
+
+    if(new URLSearchParams(window.location.search).get('ar') === '1'){
+      toast('🔮 Launching AR experience...');
+      setTimeout(launchAR, 650);
+    }
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', bindAR);
+  } else {
+    bindAR();
+  }
+})();
+</script>
+
 </body>
 </html>
