@@ -138,14 +138,133 @@ a,button,[role=button],[tabindex]{cursor:url('assets/img/logo-cursor-48.png') 24
 .cursor-ring.hovered{width:54px;height:54px;border-color:rgba(91,45,142,.7)}
 
 /* ═══════════════════════════════════════
-   SCROLL REVEAL
+   EPIC SCROLL REVEAL SYSTEM v3.0
 ═══════════════════════════════════════ */
-.reveal{opacity:0;transform:translateY(40px);transition:opacity .75s ease,transform .75s ease}
-.reveal.visible{opacity:1;transform:none}
-.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .75s ease,transform .75s ease}
-.reveal-left.visible{opacity:1;transform:none}
-.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .75s ease,transform .75s ease}
-.reveal-right.visible{opacity:1;transform:none}
+.reveal{
+  opacity:0;
+  transform:translateY(60px) scale(.97);
+  filter:blur(6px);
+  transition:opacity .9s cubic-bezier(.16,1,.3,1),
+             transform .9s cubic-bezier(.16,1,.3,1),
+             filter .9s cubic-bezier(.16,1,.3,1);
+  will-change:opacity,transform,filter;
+}
+.reveal-left{
+  opacity:0;
+  transform:translateX(-70px) rotateY(8deg);
+  filter:blur(4px);
+  transition:opacity .85s cubic-bezier(.16,1,.3,1),
+             transform .85s cubic-bezier(.16,1,.3,1),
+             filter .85s cubic-bezier(.16,1,.3,1);
+  will-change:opacity,transform,filter;
+}
+.reveal-right{
+  opacity:0;
+  transform:translateX(70px) rotateY(-8deg);
+  filter:blur(4px);
+  transition:opacity .85s cubic-bezier(.16,1,.3,1),
+             transform .85s cubic-bezier(.16,1,.3,1),
+             filter .85s cubic-bezier(.16,1,.3,1);
+  will-change:opacity,transform,filter;
+}
+.reveal.visible,.reveal-left.visible,.reveal-right.visible{
+  opacity:1;transform:none;filter:blur(0px);
+}
+/* stagger for siblings */
+.reveal:nth-child(2){transition-delay:.08s}
+.reveal:nth-child(3){transition-delay:.16s}
+.reveal:nth-child(4){transition-delay:.24s}
+.reveal:nth-child(5){transition-delay:.32s}
+.reveal:nth-child(6){transition-delay:.40s}
+
+/* card 3D pop-in */
+.upc-card.reveal{
+  transform:translateY(50px) scale(.92) rotateX(6deg);
+  transform-origin:center bottom;
+}
+.upc-card.reveal.visible{transform:none}
+
+/* pillars scale */
+.pillars-bar.reveal{transform:translateY(40px) scaleX(.95);transform-origin:center}
+.pillars-bar.reveal.visible{transform:none}
+
+/* scroll progress bar */
+#scroll-progress-bar{
+  position:fixed;top:0;left:0;height:3px;width:0%;z-index:99999;
+  background:linear-gradient(90deg,#5b2d8e,#9b6ddc,#c4a0f5,#fff,#9b6ddc,#5b2d8e);
+  background-size:200% 100%;
+  animation:shimmerBar 2s linear infinite;
+  box-shadow:0 0 12px rgba(196,160,245,.8),0 0 24px rgba(155,109,220,.4);
+  pointer-events:none;border-radius:0 2px 2px 0;
+}
+@keyframes shimmerBar{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* side section dots */
+#section-indicator{
+  position:fixed;left:22px;top:50%;transform:translateY(-50%);
+  z-index:9990;pointer-events:none;
+  display:flex;flex-direction:column;gap:10px;
+}
+.sec-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:rgba(91,45,142,.2);border:1.5px solid rgba(91,45,142,.3);
+  transition:all .4s cubic-bezier(.34,1.56,.64,1);
+}
+.sec-dot.active{
+  background:var(--purple);border-color:var(--purple);
+  transform:scale(1.7);
+  box-shadow:0 0 0 4px rgba(91,45,142,.18),0 0 14px rgba(91,45,142,.5);
+}
+
+/* velocity speed lines on right */
+#velocity-trail{
+  position:fixed;right:18px;top:50%;transform:translateY(-50%);
+  pointer-events:none;z-index:9990;
+  display:flex;flex-direction:column;gap:5px;align-items:center;
+}
+.vel-line{
+  width:2px;border-radius:2px;
+  background:linear-gradient(180deg,rgba(196,160,245,0),rgba(196,160,245,.7),rgba(196,160,245,0));
+  transform:scaleY(0);opacity:0;
+  transition:transform .25s ease,opacity .25s ease,height .25s ease;
+}
+.vel-line.show{transform:scaleY(1);opacity:1}
+
+/* aurora bg glow that follows scroll */
+#page-aurora{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 60% 40% at 50% 30%,rgba(91,45,142,.04),transparent 70%);
+  transition:background 1s ease;
+  mix-blend-mode:multiply;
+}
+
+/* section flash sweep */
+@keyframes sectionSweep{
+  0%{transform:translateX(-100%);opacity:.6}
+  100%{transform:translateX(200%);opacity:0}
+}
+.sweep-flash{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:9;
+}
+.sweep-flash::after{
+  content:'';
+  position:absolute;inset:0;width:40%;
+  background:linear-gradient(90deg,transparent,rgba(196,160,245,.12),transparent);
+  animation:sectionSweep 1s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+/* stat counter glow on appear */
+.stats-strip.visible .stat-num{
+  animation:statPop .7s cubic-bezier(.34,1.56,.64,1) both;
+  animation-delay:.2s;
+}
+@keyframes statPop{
+  0%{transform:scale(.8);opacity:.4;text-shadow:none}
+  60%{transform:scale(1.08);text-shadow:0 0 30px rgba(196,160,245,.9)}
+  100%{transform:scale(1);text-shadow:0 0 8px rgba(196,160,245,.2)}
+}
+
+@media(max-width:900px){#section-indicator,#velocity-trail{display:none}}
 
 /* ═══════════════════════════════════════
    FLOATING PARTICLES
@@ -188,6 +307,29 @@ a,button,[role=button],[tabindex]{cursor:url('assets/img/logo-cursor-48.png') 24
   background:radial-gradient(ellipse 160% 200% at 80% -40%, #7b3fd4 0%, #3d1080 40%, #1a0050 100%);
   clip-path:polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%);
   z-index:0;
+  transition:clip-path .7s cubic-bezier(.16,1,.3,1),
+             left .7s cubic-bezier(.16,1,.3,1),
+             right .7s cubic-bezier(.16,1,.3,1),
+             background .5s ease;
+}
+/* ── RTL: Purple moves to LEFT, white to RIGHT ── */
+[dir="rtl"] .nav::before{
+  left:0;right:auto;
+  clip-path:polygon(0% 0%, 92% 0%, 100% 100%, 0% 100%);
+  background:radial-gradient(ellipse 160% 200% at 20% -40%, #7b3fd4 0%, #3d1080 40%, #1a0050 100%);
+}
+[dir="rtl"] .nav-logo{
+  padding-left:16px;padding-right:32px;
+  order:3;
+}
+[dir="rtl"] .nav-links{
+  order:2;
+  justify-content:flex-start;
+  padding-right:0;padding-left:8px;
+}
+[dir="rtl"] .nav-right{
+  order:1;
+  padding-right:0;padding-left:32px;
 }
 .nav.scrolled{box-shadow:0 6px 40px rgba(20,0,80,.22)}
 
@@ -413,19 +555,145 @@ a,button,[role=button],[tabindex]{cursor:url('assets/img/logo-cursor-48.png') 24
    CHAIRMAN'S WORD — IMAGE ONLY
 ═══════════════════════════════════════ */
 .chairman-section{
-  width:100%;
-  position:relative;
-  overflow:hidden;
-  background:#0a001e;
-  line-height:0;
+  width:100%;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#07001a 0%,#120035 40%,#1e0055 70%,#0a001e 100%);
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;min-height:580px;
+}
+/* left — text content */
+.ch-content{
+  position:relative;z-index:3;
+  padding:72px 56px 72px 80px;
+  display:flex;flex-direction:column;gap:24px;
+}
+.ch-eyebrow{
+  font-family:'Cairo',sans-serif;font-size:11px;font-weight:800;
+  letter-spacing:.35em;text-transform:uppercase;
+  color:rgba(196,160,245,.7);
+  display:flex;align-items:center;gap:10px;
+}
+.ch-eyebrow::before{
+  content:'';width:32px;height:2px;
+  background:linear-gradient(90deg,#9b6ddc,transparent);
+  border-radius:99px;
+}
+.ch-title{
+  font-family:'Cairo',sans-serif;font-size:clamp(28px,3.5vw,46px);
+  font-weight:900;color:#fff;line-height:1.1;
+}
+.ch-title em{
+  font-style:normal;
+  background:linear-gradient(135deg,#c4a0f5,#9b6ddc);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.ch-name{
+  font-family:'Cairo',sans-serif;font-size:18px;font-weight:700;
+  color:rgba(255,255,255,.9);margin-top:4px;
+}
+.ch-role{
+  font-size:12px;font-weight:600;color:rgba(196,160,245,.65);
+  letter-spacing:.08em;text-transform:uppercase;
+}
+.ch-quote-mark{
+  font-size:72px;line-height:.6;color:rgba(155,109,220,.25);
+  font-family:Georgia,serif;margin-bottom:-8px;align-self:flex-start;
+}
+.ch-quote{
+  font-size:15px;line-height:1.85;color:rgba(255,255,255,.72);
+  font-weight:400;border-left:3px solid rgba(155,109,220,.4);
+  padding-left:18px;font-style:italic;
+}
+.ch-divider{
+  width:60px;height:2px;
+  background:linear-gradient(90deg,#9b6ddc,rgba(155,109,220,0));
+  border-radius:99px;
+}
+/* right — photo */
+.ch-img-wrap{
+  position:relative;height:100%;min-height:580px;overflow:hidden;
+}
+.ch-img-wrap::before{
+  content:'';position:absolute;inset:0;z-index:2;
+  background:linear-gradient(90deg,#07001a 0%,rgba(7,0,26,.3) 30%,transparent 60%),
+             linear-gradient(0deg,rgba(7,0,26,.6) 0%,transparent 40%);
+}
+/* Glow ring behind photo */
+.ch-img-wrap::after{
+  content:'';position:absolute;
+  inset:-60px;z-index:1;
+  background:radial-gradient(ellipse 60% 80% at 70% 50%,rgba(113,64,184,.35),transparent 65%);
+  animation:chGlow 4s ease-in-out infinite alternate;
+}
+@keyframes chGlow{
+  0%{opacity:.6;transform:scale(.95)}
+  100%{opacity:1;transform:scale(1.05)}
 }
 .ch-full-img{
-  width:100%;
-  height:auto;
-  display:block;
+  position:absolute;inset:0;
+  width:100%;height:100%;
   object-fit:cover;
   object-position:center top;
-  max-height:90vh;
+  z-index:1;
+  transform:scale(1.04);
+  transition:transform 8s ease;
+  filter:brightness(.92) contrast(1.05);
+}
+.chairman-section:hover .ch-full-img{
+  transform:scale(1);
+}
+/* floating accent elements */
+.ch-accent-circle{
+  position:absolute;border-radius:50%;pointer-events:none;z-index:0;
+  animation:chFloat 6s ease-in-out infinite;
+}
+.ch-accent-circle:nth-child(1){
+  width:300px;height:300px;top:-80px;left:-80px;
+  background:radial-gradient(circle,rgba(113,64,184,.12),transparent 70%);
+  animation-delay:0s;
+}
+.ch-accent-circle:nth-child(2){
+  width:200px;height:200px;bottom:-40px;left:30%;
+  background:radial-gradient(circle,rgba(196,160,245,.08),transparent 70%);
+  animation-delay:-3s;
+}
+@keyframes chFloat{
+  0%,100%{transform:translate(0,0)}
+  50%{transform:translate(20px,-20px)}
+}
+/* Stats row */
+.ch-stats{
+  display:flex;gap:28px;margin-top:4px;
+}
+.ch-stat{text-align:center}
+.ch-stat-val{
+  font-family:'Cairo',sans-serif;font-size:22px;font-weight:900;
+  background:linear-gradient(135deg,#c4a0f5,#9b6ddc);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.ch-stat-lbl{font-size:10px;color:rgba(255,255,255,.4);font-weight:600;letter-spacing:.05em}
+
+/* RTL flip */
+[dir="rtl"] .ch-content{padding:72px 80px 72px 56px;order:2}
+[dir="rtl"] .ch-img-wrap{order:1}
+[dir="rtl"] .ch-eyebrow::before{background:linear-gradient(270deg,#9b6ddc,transparent)}
+[dir="rtl"] .ch-img-wrap::before{
+  background:linear-gradient(270deg,#07001a 0%,rgba(7,0,26,.3) 30%,transparent 60%),
+             linear-gradient(0deg,rgba(7,0,26,.6) 0%,transparent 40%);
+}
+[dir="rtl"] .ch-quote{border-left:none;border-right:3px solid rgba(155,109,220,.4);padding-left:0;padding-right:18px}
+[dir="rtl"] .ch-divider{background:linear-gradient(270deg,#9b6ddc,rgba(155,109,220,0))}
+
+@media(max-width:900px){
+  .chairman-section{grid-template-columns:1fr;min-height:auto}
+  .ch-content{padding:48px 28px;order:2}
+  .ch-img-wrap{min-height:320px;order:1}
+  .ch-img-wrap::before{
+    background:linear-gradient(0deg,#07001a 0%,rgba(7,0,26,.2) 50%,transparent 100%)
+  }
+  [dir="rtl"] .ch-content{order:2;padding:48px 28px}
+  [dir="rtl"] .ch-img-wrap{order:1}
 }
 
 /* ═══════════════════════════════════════
@@ -1904,6 +2172,21 @@ a,button,[role=button],[tabindex]{cursor:url('assets/img/logo-cursor-48.png') 24
 </div>
 
 <!-- PARTICLES -->
+<!-- EPIC SCROLL ELEMENTS -->
+<div id="scroll-progress-bar"></div>
+<div id="page-aurora"></div>
+<div id="section-indicator"></div>
+<div id="velocity-trail">
+  <div class="vel-line" style="height:6px"></div>
+  <div class="vel-line" style="height:10px"></div>
+  <div class="vel-line" style="height:16px"></div>
+  <div class="vel-line" style="height:22px"></div>
+  <div class="vel-line" style="height:28px"></div>
+  <div class="vel-line" style="height:22px"></div>
+  <div class="vel-line" style="height:16px"></div>
+  <div class="vel-line" style="height:10px"></div>
+  <div class="vel-line" style="height:6px"></div>
+</div>
 <div id="particles" style="z-index:-2"></div>
 
 <!-- CURSOR RING -->
@@ -2699,8 +2982,33 @@ a,button,[role=button],[tabindex]{cursor:url('assets/img/logo-cursor-48.png') 24
      CHAIRMAN'S WORD
 ════════════════════════ -->
 <section class="chairman-section reveal" id="chairman">
-  <img src="assets/img/charman.png" alt="Chairman's Word — Mohammed Shemel Al Memari" class="ch-full-img">
-  <div style="position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to bottom,transparent,rgba(26,0,80,0.95));pointer-events:none"></div>
+  <!-- Accent circles -->
+  <div class="ch-accent-circle"></div>
+  <div class="ch-accent-circle"></div>
+
+  <!-- Left: Content -->
+  <div class="ch-content">
+    <div class="ch-eyebrow" data-i18n="ch_eyebrow">Chairman's Word</div>
+    <div class="ch-quote-mark">"</div>
+    <div class="ch-quote" data-i18n="ch_quote">
+      At Ain Al Khaleej University of Health Sciences, we are committed to shaping the future of healthcare in the UAE and beyond — through excellence, innovation, and an unwavering dedication to our students.
+    </div>
+    <div class="ch-divider"></div>
+    <div>
+      <div class="ch-name" data-i18n="ch_name">Mohammed Shemel Al Memari</div>
+      <div class="ch-role" data-i18n="ch_role">Chairman, Board of Trustees</div>
+    </div>
+    <div class="ch-stats">
+      <div class="ch-stat"><div class="ch-stat-val">20+</div><div class="ch-stat-lbl" data-i18n="ch_stat1">Programs</div></div>
+      <div class="ch-stat"><div class="ch-stat-val">8</div><div class="ch-stat-lbl" data-i18n="ch_stat2">Colleges</div></div>
+      <div class="ch-stat"><div class="ch-stat-val">10K+</div><div class="ch-stat-lbl" data-i18n="ch_stat3">Students</div></div>
+    </div>
+  </div>
+
+  <!-- Right: Photo -->
+  <div class="ch-img-wrap">
+    <img src="assets/img/charman.png" alt="Chairman Mohammed Shemel Al Memari" class="ch-full-img">
+  </div>
 </section>
 
 <!-- ════════════════════════
@@ -2980,7 +3288,12 @@ const T = {
     get_in_touch:'Get in Touch →',
     footer_copy:'© 2025 Ain Al Khaleej University of Health Sciences. All Rights Reserved.',
     privacy:'Privacy Policy',terms:'Terms of Use',sitemap:'Sitemap',
-    accredited_footer:'Accredited & Recognized by Ministry of Education — UAE'
+    accredited_footer:'Accredited & Recognized by Ministry of Education — UAE',
+    ch_eyebrow:"Chairman's Word",
+    ch_quote:"At Ain Al Khaleej University of Health Sciences, we are committed to shaping the future of healthcare in the UAE and beyond — through excellence, innovation, and an unwavering dedication to our students.",
+    ch_name:'Mohammed Shemel Al Memari',
+    ch_role:'Chairman, Board of Trustees',
+    ch_stat1:'Programs',ch_stat2:'Colleges',ch_stat3:'Students'
   },
   ar:{
     nav_about:'عن الجامعة',nav_academics:'البرامج الأكاديمية',nav_admissions:'القبول والتسجيل',
@@ -3039,7 +3352,12 @@ const T = {
     get_in_touch:'تواصل معنا →',
     footer_copy:'© 2025 جامعة عين الخليج للعلوم الصحية. جميع الحقوق محفوظة.',
     privacy:'سياسة الخصوصية',terms:'شروط الاستخدام',sitemap:'خريطة الموقع',
-    accredited_footer:'معتمد ومعترف به من وزارة التعليم – الإمارات'
+    accredited_footer:'معتمد ومعترف به من وزارة التعليم – الإمارات',
+    ch_eyebrow:'كلمة رئيس مجلس الأمناء',
+    ch_quote:'في جامعة عين الخليج لعلوم الصحة، نحن ملتزمون بتشكيل مستقبل الرعاية الصحية في الإمارات وما وراءها — من خلال التميز والابتكار والتفاني المتواصل في خدمة طلابنا.',
+    ch_name:'محمد شيمل المميري',
+    ch_role:'رئيس مجلس الأمناء',
+    ch_stat1:'برنامج',ch_stat2:'كليات',ch_stat3:'طالب'
   }
 };
 
@@ -3049,6 +3367,34 @@ function setLang(lang) {
   currentLang = lang;
   localStorage.setItem('aaku-lang',lang);
   document.documentElement.lang = lang;
+
+  // ── Epic nav diagonal flip animation ──
+  const nav = document.querySelector('.nav');
+  if(nav){
+    nav.classList.add('lang-transitioning');
+    // Add a ripple overlay for the flip
+    let ripple = document.getElementById('nav-lang-ripple');
+    if(!ripple){
+      ripple = document.createElement('div');
+      ripple.id = 'nav-lang-ripple';
+      ripple.style.cssText = `
+        position:absolute;inset:0;z-index:50;pointer-events:none;
+        background:linear-gradient(90deg,transparent,rgba(155,109,220,.25),transparent);
+        transform:translateX(-100%);
+        transition:transform .6s cubic-bezier(.16,1,.3,1);
+      `;
+      nav.appendChild(ripple);
+    }
+    // Trigger ripple sweep direction based on language
+    ripple.style.transform = lang==='ar' ? 'translateX(-100%)' : 'translateX(200%)';
+    requestAnimationFrame(()=>{
+      requestAnimationFrame(()=>{
+        ripple.style.transform = lang==='ar' ? 'translateX(200%)' : 'translateX(-100%)';
+      });
+    });
+    setTimeout(()=>nav.classList.remove('lang-transitioning'),700);
+  }
+
   document.documentElement.dir = lang==='ar'?'rtl':'ltr';
   const d = T[lang]||T.en;
   document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -3130,17 +3476,177 @@ document.querySelectorAll('a,button,[role=button]').forEach(el=>{
 });
 
 /* ═══════════════════════════════════════
-   SCROLL REVEAL
+   EPIC SCROLL ENGINE v3.0
 ═══════════════════════════════════════ */
-const revealObserver = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('visible');
-      revealObserver.unobserve(e.target);
+(function initEpicScroll(){
+
+  /* — Section registry — */
+  const SECTIONS = [
+    {id:'home',   label:'Home',   color:'rgba(91,45,142,.06)'},
+    {id:'about',  label:'About',  color:'rgba(61,26,110,.07)'},
+    {id:'programs',label:'Programs',color:'rgba(113,64,184,.05)'},
+    {id:'ar-campus',label:'AR',  color:'rgba(155,109,220,.06)'},
+    {id:'research',label:'Research',color:'rgba(91,45,142,.05)'},
+    {id:'campus', label:'Campus', color:'rgba(61,26,110,.06)'},
+    {id:'admissions',label:'Admissions',color:'rgba(113,64,184,.07)'},
+    {id:'news',   label:'News',   color:'rgba(91,45,142,.04)'},
+  ];
+
+  /* — Build side section dots — */
+  const indic = document.getElementById('section-indicator');
+  if(indic){
+    SECTIONS.forEach((s,i)=>{
+      const d=document.createElement('div');
+      d.className='sec-dot';
+      d.dataset.idx=i;
+      indic.appendChild(d);
+    });
+  }
+
+  /* — Elements — */
+  const progressBar = document.getElementById('scroll-progress-bar');
+  const aurora      = document.getElementById('page-aurora');
+  const velLines    = document.querySelectorAll('.vel-line');
+  const dots        = document.querySelectorAll('.sec-dot');
+
+  /* — Scroll state — */
+  let lastY=0, velocity=0, velTimeout, scrollRafId;
+  let activeSec=0;
+
+  /* — Progress bar — */
+  function updateProgress(){
+    const doc=document.documentElement;
+    const pct=(doc.scrollTop/(doc.scrollHeight-doc.clientHeight))*100;
+    if(progressBar) progressBar.style.width=pct+'%';
+  }
+
+  /* — Velocity trail — */
+  function updateVelocity(v){
+    const abs=Math.min(Math.abs(v),40);
+    const norm=abs/40; // 0..1
+    velLines.forEach((l,i)=>{
+      const center=4;
+      const dist=Math.abs(i-center)/center;
+      const show=norm>(dist*.6);
+      l.classList.toggle('show',show);
+      if(show){
+        const intensity=1-dist*.5;
+        l.style.opacity=(norm*intensity).toFixed(2);
+        const hue=norm>0.6?'rgba(196,160,245,.9)':'rgba(155,109,220,.6)';
+        l.style.background=`linear-gradient(180deg,transparent,${hue},transparent)`;
+      }
+    });
+    clearTimeout(velTimeout);
+    velTimeout=setTimeout(()=>{
+      velLines.forEach(l=>{l.classList.remove('show');l.style.opacity='0'});
+    }, 200);
+  }
+
+  /* — Aurora bg glow — */
+  function updateAurora(secIdx){
+    if(!aurora) return;
+    const colors=[
+      '91,45,142','61,26,110','113,64,184',
+      '155,109,220','91,45,142','61,26,110','113,64,184','91,45,142'
+    ];
+    const c=colors[secIdx]||'91,45,142';
+    const pct=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
+    aurora.style.background=
+      `radial-gradient(ellipse 70% 50% at ${20+pct*.6}% ${30+Math.sin(pct*.06)*20}%,`+
+      `rgba(${c},.055),transparent 65%)`;
+  }
+
+  /* — Section detection & dots — */
+  function detectSection(){
+    let current=0;
+    SECTIONS.forEach((s,i)=>{
+      const el=document.getElementById(s.id);
+      if(el){
+        const rect=el.getBoundingClientRect();
+        if(rect.top<=window.innerHeight*.45) current=i;
+      }
+    });
+    if(current!==activeSec){
+      activeSec=current;
+      dots.forEach((d,i)=>d.classList.toggle('active',i===current));
+      updateAurora(current);
     }
+  }
+
+  /* — Section sweep flash on enter — */
+  const sweepObserver=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting&&!e.target.dataset.swept){
+        e.target.dataset.swept='1';
+        const sweep=document.createElement('div');
+        sweep.className='sweep-flash';
+        e.target.style.position='relative';
+        e.target.appendChild(sweep);
+        setTimeout(()=>sweep.remove(),1100);
+      }
+    });
+  },{threshold:.15});
+  document.querySelectorAll('section,[class*="-section"],[class*="-bar"]').forEach(s=>{
+    sweepObserver.observe(s);
   });
-},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>revealObserver.observe(el));
+
+  /* — Main scroll handler — */
+  function onScroll(){
+    const y=window.scrollY;
+    velocity=y-lastY;
+    lastY=y;
+    updateProgress();
+    updateVelocity(velocity);
+    detectSection();
+  }
+
+  window.addEventListener('scroll',onScroll,{passive:true});
+  // initial
+  updateProgress();
+  detectSection();
+
+  /* — REVEAL OBSERVER with stagger per group — */
+  const revealObs=new IntersectionObserver(entries=>{
+    entries.forEach((e,idx)=>{
+      if(e.isIntersecting){
+        // stagger by position within viewport batch
+        const delay=Math.min(idx*60,300);
+        setTimeout(()=>{
+          e.target.classList.add('visible');
+          // sweep flash on card grids
+          if(e.target.classList.contains('upc-card')){
+            e.target.style.transitionDelay=(idx*0.07)+'s';
+          }
+        },delay);
+        revealObs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>{
+    revealObs.observe(el);
+  });
+
+  /* — Parallax depth on hero — */
+  const heroContent=document.querySelector('.hero-content');
+  if(heroContent){
+    window.addEventListener('scroll',()=>{
+      const y=window.scrollY;
+      if(y<800){
+        heroContent.style.transform=`translateY(${y*.18}px)`;
+        heroContent.style.opacity=`${1-y/600}`;
+      }
+    },{passive:true});
+  }
+
+  /* — Magnetic scroll snap feel (subtle) — */
+  let snapTimeout;
+  window.addEventListener('scroll',()=>{
+    clearTimeout(snapTimeout);
+    snapTimeout=setTimeout(()=>{ velocity=0; },150);
+  },{passive:true});
+
+})();
 
 /* ═══════════════════════════════════════
    NAV SCROLL EFFECT
